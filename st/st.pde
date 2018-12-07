@@ -6,7 +6,6 @@ int v3x=110;
 float v3y=50*sqrt(3)+10;
 float dotx=250;
 float doty=250;
-
 int r;
 int diameter=4;
 int count=0;
@@ -33,49 +32,39 @@ void draw() {
   if (playing) {
     r=int(random(3));
     if (count%speed==0) {
+      float vx;
+      float vy;
       if (r==0) {
-        dotx=dotx-(1*(dotx-v1x)/2);
-        doty=doty-(1*(doty-v1y)/2);
-        //dotx=(dotx+v1x)/2;
-        //doty=(doty+v1y)/2;
+        vx=v1x;
+        vy=v1y;
         fill(255, 0, 0);
-        if (count>120) {
-          ellipse(dotx, doty, diameter, diameter);
-        }
       } else if (r==1) {
-        dotx=dotx-(1*(dotx-v2x)/2);
-        doty=doty-(1*(doty-v2y)/2);
-        //dotx=(dotx+v2x)/2;
-        //doty=(doty+v2y)/2;
+        vx=v2x;
+        vy=v2y;
         fill(0, 255, 0);
-        if (count>120) {
-          ellipse(dotx, doty, diameter, diameter);
-        }
-      } else if (r==2) {
-        dotx=dotx-(1*(dotx-v3x)/2);
-        doty=doty-(1*(doty-v3y)/2);
-        //dotx=(dotx+v3x)/2;
-        //doty=(doty+v3y)/2;
+      } else {
+        vx=v3x;
+        vy=v3y;
         fill(0, 0, 255);
-        if (count>120) {
+      }
+      dotx=dotx-(dotx-vx)/2;
+      doty=doty-(doty-vy)/2;
+      if (count>120) {
           ellipse(dotx, doty, diameter, diameter);
         }
-      }
     }
     fill(0);
-     ellipse(v1x, v1y, 20, 20);
-     ellipse(v2x, v2y, 20, 20);
-     ellipse(v3x, v3y, 20, 20);
+     ellipse(v1x, v1y, 10, 10);
+     ellipse(v2x, v2y, 10, 10);
+     ellipse(v3x, v3y, 10, 10);
     noFill();
-
     count+=1;
   }
 }
 
-void keyPressed() {
-  if (playing) {
+void keyPressed() {  
     if (key=='p') {
-      playing=false;
+      playing=!playing;
     }
     if (key=='a') {
       slow=true;
@@ -95,64 +84,11 @@ void keyPressed() {
     if (key=='r') {
       background(255);
     }
-    if (key=='1'){
-      diameter=1;
+    if (key>=49 && key<=57){
+      diameter=key-48;
       background(255);
     }
-    if (key=='2'){
-      diameter=2;
-      background(255);
-    }
-    if (key=='3'){
-      diameter=3;
-      background(255);
-    }
-    if (key=='4'){
-      diameter=4;
-      background(255);
-    }
-    if (key=='5'){
-      diameter=5;
-      background(255);
-    }
-    if (key=='6'){
-      diameter=6;
-      background(255);
-    }
-  } else {
-    if (key=='p') {
-      playing=true;
-    }
-    if (key=='r') {
-      background(255);
-    }
-    if (key=='1'){
-      diameter=1;
-      background(255);
-    }
-    if (key=='2'){
-      diameter=2;
-      background(255);
-    }
-    if (key=='3'){
-      diameter=3;
-      background(255);
-    }
-    if (key=='4'){
-      diameter=4;
-      background(255);
-    }
-    if (key=='5'){
-      diameter=5;
-      background(255);
-    }
-    if (key=='6'){
-      diameter=6;
-      background(255);
-    }
-  }
 }
-
 void mouseDragged(){
   if(sqrt(sq(mouseX-v1x)+sq(mouseY-v1y))<=20){
     background(255);
@@ -169,5 +105,4 @@ void mouseDragged(){
     v3x=mouseX;
     v3y=mouseY;
   }
-
 }
