@@ -12,16 +12,17 @@ boolean medium=false;
 boolean fast=false;
 boolean dragging=false;
 int dnumber;
+boolean gold = false;
 void setup() {
   size(770, 670);
   background(255);
   dots=new ArrayList<Dot>();
-  //dots.add(new Dot(10, 50*sqrt(3)+10, 10, 247, 243, 34));
-  //dots.add(new Dot(60, 10, 10, 247, 243, 34));
-  //dots.add(new Dot(110, 50*sqrt(3)+10, 10, 247, 243, 34));
-  dots.add(new Dot(10, 50*sqrt(3)+10, 10, 0, 255, 0));
-  dots.add(new Dot(60, 10, 10, 255, 0, 0));
-  dots.add(new Dot(110, 50*sqrt(3)+10, 10, 0, 0, 255));
+  PVector[] gold_colors = {new PVector(247, 243, 34), new PVector(247, 243, 34), new PVector(247, 243, 34)};
+  PVector[] rgb_colors = {new PVector(0, 255, 0), new PVector(255, 0, 0), new PVector(0, 0, 255)};
+  PVector[] colors = gold ? gold_colors : rgb_colors;
+  dots.add(new Dot(30, 150*sqrt(3)+30, 10, colors[0]));
+  dots.add(new Dot(180, 30, 10, colors[1]));
+  dots.add(new Dot(330, 150*sqrt(3)+30, 10, colors[2]));
   //dots.add(new Dot(110, 110, 10, 255, 0, 255));
 }
 void draw() {
@@ -41,7 +42,7 @@ void draw() {
     r=int(random(3));
     if (count%speed==0) {
       Dot d=dots.get(r);
-      fill(d.r, d.g, d.b);
+      fill(d.col.x, d.col.y, d.col.z);
       dotx=dotx-(dotx-d.x)/2;
       doty=doty-(doty-d.y)/2;
       if (count>120) {

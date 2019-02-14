@@ -2,16 +2,12 @@ class Dot{
   float x;
   float y;
   float radius;
-  int r;
-  int g;
-  int b;
-  Dot(float ix, float iy, float rad, int ir, int ig, int ib){
+  PVector col;
+  Dot(float ix, float iy, float rad, PVector col){
     x=ix;
     y=iy;
     radius=rad;
-    r=ir;
-    g=ig;
-    b=ib;
+    this.col = col;
   }
   void render(){
     ellipse(x,y,radius*2,radius*2);
