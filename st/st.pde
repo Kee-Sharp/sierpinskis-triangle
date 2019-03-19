@@ -1,3 +1,14 @@
+/**
+* Demonstration of the Sierpinski Triangle
+*
+* Each dot can be moved around
+* Press 'p' to pause/play the demonstration
+* Press 'a'/'s'/'d' for a slow/medium/fast speed
+* Press a number between 1-9 to change the diameter of the dots,
+*   a smaller diameter yields a clearer visualization of the effect
+* Press 'r' to wipe the screen
+*/
+
 float dotx=250;
 float doty=250;
 ArrayList<Dot> dots;
